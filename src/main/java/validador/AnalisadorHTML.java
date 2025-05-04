@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package questao1.aedprojetofinal;
+package validador;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,21 +31,9 @@ public class AnalisadorHTML {
         }
         return texto;
     }
-
-
-    public String extrairTag(String texto) {
-        String tags = "";
-        Pattern pattern = Pattern.compile("<[^<>]+?>", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(texto);
-        while(matcher.find()) {
-            tags += texto.substring(matcher.start(), matcher.end());
-        }
-        return tags;
-    }
-
     
     public String Validar(String texto) {
-        try {
+        
             
             PilhaLista<Tag> pilha = new PilhaLista();
             Pattern pattern = Pattern.compile("<[^<>]+?>", Pattern.CASE_INSENSITIVE);
@@ -77,12 +65,10 @@ public class AnalisadorHTML {
             }
             return "Faltam tags finais: " + pilha.toString();
             
-        } catch (PilhaVaziaException e) {
-            return "Arquivo não encontrado";
-        }
+        
     }
     
-    public Tag tratarTag(String texto) {
+    private Tag tratarTag(String texto) {
         if(texto.contains(" ")) {
             String[] valores = texto.split(" ");
             texto = valores[0] + ">";
@@ -100,11 +86,11 @@ public class AnalisadorHTML {
         
     }
     
-    public boolean isFinal(String texto) {
+    private boolean isFinal(String texto) {
         return texto.charAt(1) == '/';
     }
     
-   public boolean isSingleton (Tag tag) {
+   private boolean isSingleton (Tag tag) {
        for(String singleton : singletonTags) {
            if(tag.getNome().equals(singleton.toLowerCase())) {
                return true;

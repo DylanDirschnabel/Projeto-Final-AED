@@ -31,7 +31,7 @@ public class AnalisadorHTML {
         }
         return texto;
     }
-    
+        
     public String Validar(String texto) {
         
             
@@ -41,22 +41,21 @@ public class AnalisadorHTML {
 
             while(matcher.find()) {
                 Tag tag = tratarTag(texto.substring(matcher.start(), matcher.end()));
-                if(!isSingleton(tag)) {
 
-                    if(tag.getTipo() == TagTipo.tagInicial) {
-                        pilha.push(tag);
-                    } else if (tag.getTipo() == TagTipo.tagFinal) {
-                        Tag tagEsperada = pilha.pop();
-                        if(!tag.getNome().equals(tagEsperada.getNome())) {
-                            String quebraLinha = System.getProperty("line.separator");
-                            return "Foi encontrada uma tag final inesperada!" + quebraLinha 
-                                    + "Tag final encontrada: " + tag.getNome() + quebraLinha
-                                    + "Tag final esperada: " + tagEsperada.getNome();
+                if(tag.getTipo() == TagTipo.tagInicial) {
+                    pilha.push(tag);
+                } else if (tag.getTipo() == TagTipo.tagFinal) {
+                    Tag tagEsperada = pilha.pop();
+                    if(!tag.getNome().equals(tagEsperada.getNome())) {
+                        String quebraLinha = System.getProperty("line.separator");
+                        return "Foi encontrada uma tag final inesperada!" + quebraLinha 
+                                + "Tag final encontrada: " + tag.getNome() + quebraLinha
+                                + "Tag final esperada: " + tagEsperada.getNome();
                         }
                         
                     }
                     
-                }
+                
                 
             }
 
@@ -79,24 +78,42 @@ public class AnalisadorHTML {
             Tag tag = new Tag(texto.substring(2, texto.length() -1).toLowerCase(), tipo);
             return tag;
         } 
-        TagTipo tipo = TagTipo.tagInicial;
-        Tag tag = new Tag(texto.substring(1, texto.length() -1).toLowerCase(), tipo);
+        
+        Tag tag = new Tag();
+        tag.setNome(texto.substring(1, texto.length() -1).toLowerCase());
+        if(isSingleton(tag.getNome())) {
+            tag.setTipo(TagTipo.tagSingleton);
+        } else if(isComentario(tag.getNome())) {
+            tag.setTipo(TagTipo.tagComentario);
+            tag.setNome("comentario");
+        } else {
+            tag.setTipo(TagTipo.tagInicial);
+        }
+        
         return tag;
 
-        
     }
     
     private boolean isFinal(String texto) {
         return texto.charAt(1) == '/';
     }
     
-   private boolean isSingleton (Tag tag) {
+   private boolean isSingleton (String texto) {
        for(String singleton : singletonTags) {
-           if(tag.getNome().equals(singleton.toLowerCase())) {
+           if(texto.equals(singleton.toLowerCase())) {
                return true;
            }
        }
        return false;
    } 
+   
+    public boolean isComentario(String texto) {
+        Pattern pattern = Pattern.compile("!--.*?--", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(texto);
+        if(matcher.find()) {
+            return true;
+        }
+        return false;
+    }
    
 }

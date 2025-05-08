@@ -17,6 +17,8 @@ public class Tag {
         setNome(nome);
         setTipo(tipo);
     }
+    
+    public Tag() {};
 
     /**
      * @return the nome

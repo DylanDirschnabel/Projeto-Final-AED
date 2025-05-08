@@ -9,5 +9,5 @@ package validador;
  * @author User
  */
 public enum TagTipo {
-    tagFinal, tagInicial;
+    tagFinal, tagInicial, tagSingleton, tagComentario;
 }

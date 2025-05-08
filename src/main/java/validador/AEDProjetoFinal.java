@@ -15,7 +15,7 @@ public class AEDProjetoFinal {
     public static void main(String[] args) throws FileNotFoundException {
         AnalisadorHTML analisador = new AnalisadorHTML();
         try {
-            String texto = analisador.extrairArquivo("C:\\Users\\User\\Desktop\\AEDProjetoFinal\\teste4.html");
+            String texto = analisador.extrairArquivo("C:\\Users\\User\\Desktop\\AEDProjetoFinal\\teste1.html");
             System.out.println(texto);
             System.out.println(analisador.Validar(texto));
         } catch (FileNotFoundException e) {

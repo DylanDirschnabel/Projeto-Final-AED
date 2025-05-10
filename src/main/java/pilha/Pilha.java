@@ -5,8 +5,8 @@
 package pilha;
 
 /**
- *
- * @author User
+ * Interface da pilha
+ * @author Dylan Dirschnabel
  */
 public interface Pilha<T> {
     public void push(T info);

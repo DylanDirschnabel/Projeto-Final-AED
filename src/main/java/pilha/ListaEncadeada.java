@@ -7,8 +7,8 @@ package pilha;
 import pilha.NoLista;
 
 /**
- *
- * @author User
+ * Implementação de lista encadeada
+ * @author Dylan Dirschnabel
  */
 public class ListaEncadeada <T> {
     

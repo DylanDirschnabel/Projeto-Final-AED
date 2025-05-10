@@ -7,8 +7,8 @@ package validador;
 import java.util.Comparator;
 
 /**
- *
- * @author User
+ * Classe representa as tags de html
+ * @author Dylan Dirschnabel
  */
 public class Tag implements Comparable<Tag>{
 
@@ -16,19 +16,35 @@ public class Tag implements Comparable<Tag>{
     private TagTipo tipo;
     private int quantidade;
     
+    /**
+     * Construtor da tag usa apenas nome e tipo
+     * @param nome
+     * @param tipo 
+     */
     public Tag(String nome, TagTipo tipo) {
         setNome(nome);
         setTipo(tipo);
     }
     
+    /**
+     * Construtor vazio
+     */
     public Tag() {};
 
-        
+    /**
+     * método toString() retorna nome da tag
+     * @return 
+     */    
     @Override
     public String toString() {
         return nome;
     }
     
+    /**
+     * Comparação entre tags definida por ordem alfabética
+     * @param t2: outra tag a ser comparada com esta
+     * @return int -1, 1 ou 0
+     */
     @Override
     public int compareTo(Tag t2) {
             if(getNome().compareTo(t2.getNome()) < 0) {
@@ -39,6 +55,12 @@ public class Tag implements Comparable<Tag>{
             }
             return 0;
     }
+    
+    
+    
+    /**
+     * Getters e setters abaixo
+     */
     
     /**
      * @return the nome

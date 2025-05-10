@@ -5,8 +5,8 @@
 package ordenador;
 
 /**
- *
- * @author User
+ * Implementação de lista estática
+ * @author Dylan Dirschnabel
  * @param <T>
  */
 public class ListaEstatica <T> {

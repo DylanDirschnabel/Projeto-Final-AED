@@ -5,8 +5,8 @@
 package pilha;
 
 /**
- *
- * @author User
+ * Erro lançado ao procurar algum elemento de uma pilha vazia
+ * @author Dylan Dirschnabel
  */
 public class PilhaVaziaException extends RuntimeException{
     

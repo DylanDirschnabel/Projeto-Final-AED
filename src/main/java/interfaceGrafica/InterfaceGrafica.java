@@ -10,11 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import validador.AnalisadorHTML;
+import validador.ArquivoInvalidoException;
 import validador.Tag;
 
 /**
- *
- * @author User
+ * Interface gráfica do projeto
+ * @author Dylan Dirschnabel
  */
 public class InterfaceGrafica extends javax.swing.JFrame {
 
@@ -130,6 +131,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             }
         } catch (FileNotFoundException e) {
             campoMensagem.setText("Arquivo não encontrado");
+        } catch (ArquivoInvalidoException e) {
+            campoMensagem.setText("Tipo inválido de arquivo");
         }
     }//GEN-LAST:event_botaoAnalisarActionPerformed
 

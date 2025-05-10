@@ -8,8 +8,8 @@ import pilha.NoLista;
 import pilha.Pilha;
 
 /**
- *
- * @author User
+ * Implementação de pilha usando lista encadeada
+ * @author Dylan Dirschnabel
  */
 public class PilhaLista<T> extends ListaEncadeada {
     public void push(T info) {

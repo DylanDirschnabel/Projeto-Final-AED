@@ -5,8 +5,8 @@
 package ordenador;
 
 /**
- *
- * @author User
+ * Classe abstrata de ordenação
+ * @author Dylan Dirschnabel
  * @param <T>
  */
 abstract class OrdenacaoAbstract <T extends Comparable<T>>{

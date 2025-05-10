@@ -5,8 +5,8 @@
 package pilha;
 
 /**
- *
- * @author User
+ * Nó da lista encadeada
+ * @author Dylan Dirschnabel
  */
 public class NoLista<T> {
     private T info;

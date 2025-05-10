@@ -5,8 +5,8 @@
 package ordenador;
 
 /**
- *
- * @author User
+ * Classe de ordenação usando merge sort
+ * @author Dylan Dirschnabel
  * @param <T>
  */
 public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstract<T>{

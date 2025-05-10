@@ -5,8 +5,8 @@
 package validador;
 
 /**
- *
- * @author User
+ * Enumeração dos tipos de tags
+ * @author Dylan Dirschnabel
  */
 public enum TagTipo {
     tagFinal, tagInicial, tagSingleton, tagComentario;

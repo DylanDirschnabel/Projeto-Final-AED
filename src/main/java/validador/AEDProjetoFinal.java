@@ -17,7 +17,11 @@ public class AEDProjetoFinal {
         try {
             String texto = analisador.extrairArquivo("C:\\Users\\User\\Desktop\\AEDProjetoFinal\\teste1.html");
             System.out.println(texto);
-            System.out.println(analisador.Validar(texto));
+            analisador.Validar(texto);
+            Tag[] tags = analisador.enviarTagsOrdenadas();
+            for(Tag tag : tags) {
+                System.out.println(tag.getNome() + tag.getQuantidade());
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado!");
         }

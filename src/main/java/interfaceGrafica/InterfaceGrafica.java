@@ -7,7 +7,10 @@ package interfaceGrafica;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import validador.AnalisadorHTML;
+import validador.Tag;
 
 /**
  *
@@ -37,7 +40,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         campoMensagem = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaTags = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,18 +57,23 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         campoMensagem.setRows(5);
         jScrollPane1.setViewportView(campoMensagem);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaTags.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Tag", "Número de ocorrências"
             }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tabelaTags);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,12 +110,24 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void botaoAnalisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnalisarActionPerformed
         // TODO add your handling code here:
         AnalisadorHTML analisador = new AnalisadorHTML();
+        DefaultTableModel tabela = (DefaultTableModel) tabelaTags.getModel();
+        tabela.setRowCount(0);
+        
         try {
             String texto = analisador.extrairArquivo(campoArquivo.getText());
             campoMensagem.setText(analisador.Validar(texto));
+
+            if(campoMensagem.getText().equals("O arquivo está bem formatado")) {
+                
+                for(Tag tag : analisador.enviarTagsOrdenadas()) {
+                    Object[] objetos = {tag.getNome(), tag.getQuantidade()};
+                    tabela.addRow(objetos);
+                }
+            }
         } catch (FileNotFoundException e) {
             campoMensagem.setText("Arquivo não encontrado");
         }
@@ -155,6 +175,6 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaTags;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import ordenador.ListaEstatica;
+import ordenador.OrdenacaoMergeSort;
 import pilha.PilhaLista;
 import pilha.PilhaVaziaException;
 
@@ -19,7 +21,8 @@ import pilha.PilhaVaziaException;
  */
 public class AnalisadorHTML {
     private String[] singletonTags = {"meta", "base", "br", "col", "command", "embed", "hr", "img", "input", "link", "param", "source", "!DOCTYPE"};
-    
+    private ListaEstatica<Tag> lista;
+    private OrdenacaoMergeSort<Tag> ordenador = new OrdenacaoMergeSort();
 
     public String extrairArquivo(String path) throws FileNotFoundException {
         String texto = "";
@@ -33,7 +36,7 @@ public class AnalisadorHTML {
     }
         
     public String Validar(String texto) {
-        
+            lista = new ListaEstatica();
             
             PilhaLista<Tag> pilha = new PilhaLista();
             Pattern pattern = Pattern.compile("<[^<>]+?>", Pattern.CASE_INSENSITIVE);
@@ -41,6 +44,9 @@ public class AnalisadorHTML {
 
             while(matcher.find()) {
                 Tag tag = tratarTag(texto.substring(matcher.start(), matcher.end()));
+                if(tag.getTipo() != TagTipo.tagFinal) {
+                    inserirTag(tag);
+                }
 
                 if(tag.getTipo() == TagTipo.tagInicial) {
                     pilha.push(tag);
@@ -114,6 +120,27 @@ public class AnalisadorHTML {
             return true;
         }
         return false;
+    }
+    
+    public void inserirTag(Tag tag) {
+        for(int i = 0; i < lista.getTamanho(); i++) {
+            if(tag.getNome().equals( lista.obterElemento(i).getNome())) {
+                lista.obterElemento(i).setQuantidade(lista.obterElemento(i).getQuantidade() + 1);
+                return;
+            }
+        }
+        tag.setQuantidade(1);
+        lista.inserir(tag);
+    }
+    
+    public Tag[] enviarTagsOrdenadas() {
+        Tag[] tmp = new Tag[lista.getTamanho()];
+        for(int i = 0; i < tmp.length; i++) {
+            tmp[i] = (Tag) lista.getInfo()[i];
+        }
+        ordenador.setInfo(tmp);
+        ordenador.ordenar();
+        return ordenador.getInfo();
     }
    
 }

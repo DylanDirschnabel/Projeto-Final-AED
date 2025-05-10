@@ -1,8 +1,12 @@
 validador\Tag.class
 pilha\ListaEncadeada.class
+ordenador\ListaEstatica.class
 pilha\PilhaCheiaException.class
 interfaceGrafica\InterfaceGrafica$1.class
+ordenador\OrdenacaoAbstract.class
+ordenador\OrdenacaoMergeSort.class
 pilha\PilhaVaziaException.class
+interfaceGrafica\InterfaceGrafica$3.class
 interfaceGrafica\InterfaceGrafica$2.class
 interfaceGrafica\InterfaceGrafica.class
 validador\AEDProjetoFinal.class

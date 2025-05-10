@@ -4,14 +4,17 @@
  */
 package validador;
 
+import java.util.Comparator;
+
 /**
  *
  * @author User
  */
-public class Tag {
+public class Tag implements Comparable<Tag>{
 
     private String nome;
     private TagTipo tipo;
+    private int quantidade;
     
     public Tag(String nome, TagTipo tipo) {
         setNome(nome);
@@ -20,6 +23,23 @@ public class Tag {
     
     public Tag() {};
 
+        
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    @Override
+    public int compareTo(Tag t2) {
+            if(getNome().compareTo(t2.getNome()) < 0) {
+                return -1;
+            }
+            else if(getNome().compareTo(t2.getNome()) > 0) {
+                return 1;
+            }
+            return 0;
+    }
+    
     /**
      * @return the nome
      */
@@ -48,8 +68,17 @@ public class Tag {
         this.tipo = tipo;
     }
     
-    @Override
-    public String toString() {
-        return nome;
+    /**
+     * @return the quantidade
+     */
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }

@@ -16,7 +16,7 @@ import pilha.PilhaVaziaException;
 
 /**
  * Classe usada para analisar a validade de um arquivo html
- * @author Dylan Dirschnabel
+ * @author Dylan Dirschnabel    
  */
 public class AnalisadorHTML {
     private String[] singletonTags = {"meta", "base", "br", "col", "command", "embed", "hr", "img", "input", "link", "param", "source", "!DOCTYPE"};

@@ -9,9 +9,10 @@ import pilha.Pilha;
 
 /**
  * Implementação de pilha usando lista encadeada
- * @author Dylan Dirschnabel
+ * @author Dylan Dirschna
  */
-public class PilhaLista<T> extends ListaEncadeada {
+public class PilhaLista<T> extends ListaEncadeada implements Pilha<T> {
+    
     public void push(T info) {
         super.inserir(info);
     }

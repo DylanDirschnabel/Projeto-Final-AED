@@ -16,7 +16,7 @@ public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstr
         mergeSort(0, super.getInfo().length -1);
     }
     
-    public void mergeSort(int inicio, int fim) {
+    private void mergeSort(int inicio, int fim) {
         if(inicio < fim) {
             int meio = (inicio + fim) / 2;
             mergeSort(inicio, meio);
@@ -25,7 +25,7 @@ public class OrdenacaoMergeSort <T extends Comparable<T>> extends OrdenacaoAbstr
         }
     }
 
-    public void merge(int inicio, int meio, int fim) {
+    private void merge(int inicio, int meio, int fim) {
         
         int tamEsquerda = meio - inicio + 1;  
         T[] esquerda = (T[]) new Comparable[tamEsquerda];

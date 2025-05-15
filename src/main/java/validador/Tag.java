@@ -47,13 +47,7 @@ public class Tag implements Comparable<Tag>{
      */
     @Override
     public int compareTo(Tag t2) {
-            if(getNome().compareTo(t2.getNome()) < 0) {
-                return -1;
-            }
-            else if(getNome().compareTo(t2.getNome()) > 0) {
-                return 1;
-            }
-            return 0;
+            return getNome().compareTo(t2.getNome());
     }
     
     
